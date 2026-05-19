@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pertanyaan Penting!</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+        .container {
+            text-align: center;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 30px;
+        }
+        .btn-group {
+            position: relative;
+            height: 60px;
+        }
+        button {
+            font-size: 18px;
+            padding: 10px 30px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        #btn-yes {
+            background-color: #ff4d4d;
+            color: white;
+            position: absolute;
+            left: 35%;
+        }
+        #btn-no {
+            background-color: #4caf50;
+            color: white;
+            position: absolute;
+            right: 35%;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1 id="question">Apakah kamu mengaku kalau kamu itu imut?</h1>
+        <div class="btn-group">
+            <button id="btn-yes">YA</button>
+            <button id="btn-no" onclick="celebrate()">TIDAK</button>
+        </div>
+    </div>
+
+    <script>
+        const btnYes = document.getElementById('btn-yes');
+        const question = document.getElementById('question');
+
+        // Fungsi untuk membuat tombol "YA" menghindar saat didekati/diklik
+        function moveButton() {
+            // Menghitung posisi acak di dalam jendela browser
+            const x = Math.random() * (window.innerWidth - btnYes.offsetWidth);
+            const y = Math.random() * (window.innerHeight - btnYes.offsetHeight);
+            
+            // Mengubah posisi tombol menjadi absolut berdasarkan koordinat acak
+            btnYes.style.position = 'fixed';
+            btnYes.style.left = x + 'px';
+            btnYes.style.top = y + 'px';
+        }
+
+        // Memicu fungsi bergerak saat kursor mouse mendekat (di PC) atau saat disentuh (di HP)
+        btnYes.addEventListener('mouseover', moveButton);
+        btnYes.addEventListener('touchstart', moveButton);
+
+        // Jika mereka berhasil menyerah dan mengklik tombol "TIDAK"
+        function celebrate() {
+            question.innerHTML = "Nah kan! Akhirnya jujur juga kalau kamu gak imut! 😜";
+            btnYes.style.display = 'none';
+        }
+    </script>
+
+</body>
+</html>
